@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.monster.mapper.ProjectsMapper">
+    <resultMap type="projects"        id="Projects">
+        <id         property="pro_id"       column="pro_id"      />
+        <result     property="pro_img"       column="pro_img"      />
+        <result     property="pro_title"     column="pro_title"    />
+        <result     property="pro_present"   column="pro_present"  />
+        <result     property="pro_content"   column="pro_content"  />
+        <result     property="pro_date"      column="pro_date"     />
+        <result     property="tagid"      column="tagid"     />
+        <association    property="tags"         javaType="tags">
+            <id         property="t_id"         column="t_id"      />
+            <result     property="t_name"       column="t_name"    />
+        </association>
+    </resultMap>
+
+    <!--SELECT * FROM projects AS a INNER JOIN tags AS b
+        WHERE a.`tagid`=b.`t_id`-->
+    <select id="selectPro" parameterType="Projects" resultMap="Projects">
+        select * from projects
+    </select>
+
+    <select id="selectPros" resultType="Projects">
+        select * from projects
+    </select>
+
+    <select id="selectProById" parameterType="Projects" resultMap="Projects">
+        SELECT * FROM projects WHERE pro_id=#{pro_id}
+    </select>
+
+    <insert id="addPro" parameterType="projects">
+        insert into projects (pro_img,pro_title,pro_present,pro_content,pro_date)
+        values (#{pro_img},#{pro_title},#{pro_present},#{pro_content},#{pro_date})
+    </insert>
+
+    <update id="updPro" parameterType="projects">
+        update projects
+        <set>
+            <if test="pro_img!=null and pro_img!=''">
+                pro_img=#{pro_img},
+            </if>
+            <if test="pro_title!=null and pro_title!=''">
+                pro_title=#{pro_title},
+            </if>
+            <if test="pro_present!=null and pro_present!=''">
+                pro_present=#{pro_present},
+            </if>
+            <if test="pro_content!=null and pro_content!=''">
+                pro_content=#{pro_content},
+            </if>
+            <if test="pro_date!=null ">
+                pro_date=#{pro_date}
+            </if>
+             where pro_id=#{pro_id}
+        </set>
+    </update>
+</mapper>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link th:href="@{/img/favicon/faviconF.svg}" rel="shortcut icon">
+    <!-- <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="https://tcxx.info/wp-content/themes/StarryW/images/favicon/apple-touch-icon.png">-->
+
+    <!-- 所有CSS效果 -->
+    <link th:href="@{/css/plugin.css}" rel="stylesheet" type="text/css">
+
+    <!-- 主要CSS样式 -->
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+
+
+    <title>LMonster</title>
+    <style>
+        #main {
+            box-shadow: 10px 10px 2px #ddd;
+        }
+        #main {
+            background: #fff;
+            width: 960px;
+            margin: 0 auto;
+        }
+        #primary {
+            position: relative;
+            margin-left: 20px;
+        }
+        #content {
+            /*width: 680px;*/
+            /*margin: 0 auto;*/
+            /* padding: 20px; */
+        }
+        .hentry {
+            margin: 0 10px 0 0;
+            /* width: 400px; */
+            padding: 30px 80px 50px 80px;
+            display: block;
+            position: relative;
+        }
+        .entry-header {
+            margin-bottom: 20px;
+        }
+        .entry-title, .entry-title a {
+            font-size: 25px;
+            font-weight: normal;
+            font-family: microsoft yahei,STXihei;
+        }
+        .entry-content {
+            border-bottom: 1px solid #ccc;
+        }
+        .entry-content p {
+            margin: 24px 0;
+        }
+        a, a:link, a:visited {
+            color: #777;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        img{
+            width: 640px;
+        }
+    </style>
+</head>
+<body data-rsssl=1>
+<div id="sky"></div>
+<div th:include="head/header::head"/>
+<section class="section-space-padding page-section">
+    <div class="container">
+        <div class="col-sm-12">
+            <header class="section-title"><h2 class="color-light margin-top-50" th:text="${article.title}"></h2></header>
+            <span class="color-light"></span>
+        </div>
+    </div>
+</section>
+<section class="section-space-padding bg-color-l2">
+    <div id="main">
+        <div id="primary">
+            <div id="content" role="main">
+                <article id="post-8205" class="hentry">
+                    <header class="entry-header">
+                        <div class="entry-title">
+                            <h1 class="entry-title" th:text="${article.title}">标题</h1>
+                        </div>
+
+                        <div class="sp-meta">
+                            <a href=""><span th:text="${#dates.format(article.cdate,'yyyy-MM-dd')}">时间</span></a>
+                        </div>
+                    </header>
+
+                    <div class="entry-content" th:utext="${article.content}">
+                        <p></p>
+
+                    </div>
+                </article>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--<script type="text/javascript" src="https://pvp.qq.com/web201605/js/logic.js"></script>
+<script type="text/javascript" src="https://game.gtimg.cn/images/js/PTT/ping_tcss_tgideas_https_min.js"></script>
+<script type="text/javascript">
+    var setSite = {   //设置网站属性
+        siteType: "os",
+        pageType: "herolist",   //必填项:本页面的定位；按照页面含义填写例如main||list||detail||download||share||page1||pageN
+        pageName: "英雄列表-PC",  //必填项:页面中文名
+        osact: 'pc',    //选填项:是否是官网专题(在官网运营的专题)boolean；默认是0；可以在链接上加入参数osact=1来灵活设置
+        project: 'base' //选填项:是否需要统计停留时长boolean；默认是1
+    }
+    if (typeof (pgvMain) == 'function') pgvMain();
+</script>
+<script>
+
+    var dataList = new Array();
+    (function () {
+        $.ajax({
+            type: "get",
+            url: "/js/herolist.json",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $.each(data, function (i, n) {
+                    dataList.push(n);
+                });
+                init(data);
+            },
+            error: function (err) {
+                alert(err)
+            }
+        });
+    })();
+    var setall = $('.herolist-types li'),
+
+        faceInit = function (data) {
+            var heroContent = $('.herolist');
+            var html = '';
+            var len = data.length - 1;
+            $.each(data, function (i) {
+                // var imgurl = '//game.gtimg.cn/images/yxzj/img201606/heroimg/'+this.ename+'/';
+                // html += '<li><a href="herodetail/'+this.ename+'.shtml" target="_blank"><img src="'+imgurl+this.ename+'.jpg" width="91" alt="'+this.cname+'">'+this.cname+'</a></li>';
+                var f = parseInt(len - i);
+                var _ename = data[f].ename,
+                    _cname = data[f].cname,
+                    _imgurl = '//game.gtimg.cn/images/yxzj/img201606/heroimg/' + _ename + '/';
+                html += '<li><a href="herodetail/' + _ename + '.shtml" target="_blank"><img src="' + _imgurl + _ename + '.jpg" width="91" height="91" alt="' + _cname + '">' + _cname + '</a></li>';
+
+            })
+            heroContent.html(html);
+        }, init = function (data) {
+            var totalValidatData = [];
+            var curPage = 0;
+            var getValidateData = function (type) {
+                if (!type) {
+                    return data;
+                }
+                var arr = [];
+                $.each(data, function () {
+                    if (this.hero_type == type || this.hero_type2 == type || this.pay_type == type) {
+                        arr.push(this);
+                    }
+
+                })
+                return arr;
+            }
+            faceInit(getValidateData());
+
+            var typeMap = {
+                3: '坦克',
+                1: '战士',
+                2: '法师',
+                4: '刺客',
+                5: '射手',
+                6: '辅助',
+                10: '限免',
+                11: '新手'
+            }
+            //导航事件绑定
+            $('.herolist-types').on('click', 'li', function () {
+                var type = $(this).data('type') ? $(this).data('type') : $(this).data('ptype');
+                var typeString = '全部'
+                if(typeMap[type]){
+                    typeString = typeMap[type]
+                }
+                PTTSendClick('btn', 'tabtype', typeString);
+                setall.removeClass('current');
+                $(this).addClass('current');
+                faceInit(getValidateData(type));
+            });
+
+        }, LoadItem = function (ItemValue) {
+            var html = [];
+            for (j = 0; j < dataList.length; j++) {
+                var ItemName = dataList[j].cname;
+                if (ItemName.indexOf(ItemValue) != "-1") {
+                    var num = j + 1;
+                    var imgurl = '//game.gtimg.cn/images/yxzj/img201606/heroimg/' + dataList[j].ename + '/';
+                    html.push('<li><a href="herodetail/' + dataList[j].ename + '.shtml" target="_blank"><img src="' + imgurl + dataList[j].ename + '.jpg" width="91px" alt="' + dataList[j].cname + '">' + dataList[j].cname + '</a></li>');
+                    PTTSendClick('btn', 'search', '搜索');
+                }
+            }
+            if (html.length == 0) {
+                $(".herolist").html(" ");
+                //$("#JErroTips").show();
+                return;
+            }
+            $(".herolist").html(html.join(""));
+        }, checkInput = function (inptid) {
+            var inpt = document.getElementById(inptid), valu = inpt.value;
+            inpt.onblur = function () {
+                if (this.value == "") this.value = valu;
+            };
+            inpt.onfocus = function () {
+                if (this.value == valu) this.value = "";
+            }
+        };
+    checkInput("search");
+    $("#search").keyup(function () {
+        LoadItem(this.value);
+        setall.removeClass("current");
+        $(setall[4]).addClass("current");
+    });
+</script>-->
+</body>
+</html>

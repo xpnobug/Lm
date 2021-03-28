@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.monster.mapper.ArticleMapper">
+
+    <resultMap type="article"        id="Article">
+        <id     property="a_id"       column="a_id"      />
+        <result property="title"     column="title"    />
+        <result property="present"   column="present"  />
+        <result property="content"   column="content"  />
+        <result property="channer"      column="channer"     />
+        <result property="cdate"      column="cdate"     />
+        <association    property="channel"         javaType="channel">
+            <id         property="id"         column="id"      />
+            <result     property="name"       column="name"    />
+            <result     property="status"       column="status"    />
+        </association>
+    </resultMap>
+
+
+
+    <!--获取总数量-->
+    <select id="getCount" resultType="int">
+        select count(1) from article
+    </select>
+    <!--分页-->
+    <select id="getPageAll" parameterType="com.abc.monster.util.PageUtil" resultType="article">
+        select * from article LIMIT ${(pageindex-1)*pagesize},#{pagesize}
+    </select>
+
+    <!--根据id获取-->
+    <select id="selchannel" resultMap="Article">
+        SELECT * FROM article WHERE channer=#{channer}
+    </select>
+
+    <!--获取所有文章-->
+    <select id="selectArt" resultMap="Article">
+        select * from article
+    </select>
+
+    <!--根据id获取文章-->
+    <select id="selectArtById" resultMap="Article">
+        select * from article where a_id=#{a_id}
+    </select>
+
+
+    <!--添加-->
+    <insert id="addArticle" parameterType="article">
+        insert into article (title,present,content,channer,cdate)
+        values (#{title},#{present},#{content},#{channer},#{cdate})
+    </insert>
+
+    <!--修改-->
+    <update id="updArticle" parameterType="article">
+
+        update article
+        <set>
+            <if test="title!=null and title!=''">
+                title=#{title},
+            </if>
+            <if test="present!=null and present!=''">
+                present=#{present},
+            </if>
+            <if test="content!=null and content!=''">
+                content=#{content},
+            </if>
+
+            <if test="channer!=null and channer!=''">
+                channer=#{channer},
+            </if>
+            <if test="cdate!=null">
+                cdate=#{cdate},
+            </if>
+        </set>
+        where a_id=#{a_id}
+    </update>
+
+    <!--删除-->
+    <delete id="delArticle" parameterType="int">
+        delete from article where a_id=#{a_id}
+    </delete>
+
+
+    <!--模糊查询-->
+    <select id="getArtList" resultType="article"  parameterType="com.abc.monster.util.PageSupport" resultMap="Article">
+        SELECT a.*,c.`name` FROM article a,channel c
+        <where>
+            a.`channer`=c.`id`
+            <if test="title != null and title != ''">
+                AND a.title LIKE CONCAT('%', #{title}, '%')
+            </if>
+
+            <if test="channer != null and channer != ''">
+                AND a.channer LIKE CONCAT('%', #{channer}, '%')
+            </if>
+        </where>
+        order by a_id DESC LIMIT ${(currentPageNo-1)*pageSize},#{pageSize}
+    </select>
+
+    <select id="getArtCount" resultType="int">
+        select count(1) as count FROM article a,channel c
+        <where>
+            a.`channer`=c.`id`
+            <if test="title != null and title != ''">
+                AND a.title LIKE CONCAT('%', #{title}, '%')
+            </if>
+
+            <if test="channer != null and channer != ''">
+                AND a.channer LIKE CONCAT('%', #{channer}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

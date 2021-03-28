@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link th:href="@{/img/favicon/faviconF.svg}" rel="shortcut icon">
+   <!-- <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="https://tcxx.info/wp-content/themes/StarryW/images/favicon/apple-touch-icon.png">-->
+
+    <!-- 所有CSS效果 -->
+    <link th:href="@{/css/plugin.css}" rel="stylesheet" type="text/css">
+
+    <!-- 主要CSS样式 -->
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+
+    <!--春节样式-->
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/materialize.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/matery.css}">-->
+
+    <!--vue调色器样式-->
+    <link rel="stylesheet" th:href="@{/css/style2.css}">
+    <script th:src="@{/js/vuets/vue.js}"></script>
+
+    <title>LMonster</title>
+</head>
+
+<body data-rsssl=1>
+<!-- 春节弹窗动画模块 -->
+<!--<style>
+    .denglong {
+        display: none;
+    }
+    body.themespring .denglong {
+        display: block;
+    }
+    @media only screen and (min-width: 1124px) {
+        .nav-menu {
+            padding-right: 0px;
+        }
+        body.themespring .nav-menu {
+            padding-right: 96px;
+        }
+    }
+    @media only screen and (max-width: 760px) {
+        .deng-box, .deng-box1 {
+            width: 40%;
+        }
+        body.themespring .right {
+            float: left!important;
+        }
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        .right {
+            float: left!important;
+        }
+    }
+    .deng-box {
+        position: fixed;
+        top: -40px;
+        right: -20px;
+        z-index: 999;
+    }
+    .deng-box1 {
+        position: fixed;
+        top: -30px;
+        right: 10px;
+        z-index: 999;
+    }
+    .deng-box1 .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 5s infinite ease-in-out;
+        box-shadow: -5px 5px 30px 4px rgba(252, 144, 61, 1);
+    }
+    .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3s infinite ease-in-out;
+        box-shadow: -5px 5px 50px 4px rgba(250, 108, 0, 1);
+    }
+    .deng-a {
+        width: 100px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: 12px 8px 8px 10px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+    .deng-b {
+        width: 45px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: -4px 8px 8px 26px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+    .xian {
+        position: absolute;
+        top: -20px;
+        left: 60px;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+    }
+    .shui-a {
+        position: relative;
+        width: 5px;
+        height: 20px;
+        margin: -5px 0 0 59px;
+        -webkit-animation: swing 4s infinite ease-in-out;
+        -webkit-transform-origin: 50% -45px;
+        background: #ffa500;
+        border-radius: 0 0 5px 5px;
+    }
+    .shui-b {
+        position: absolute;
+        top: 14px;
+        left: -2px;
+        width: 10px;
+        height: 10px;
+        background: #dc8f03;
+        border-radius: 50%;
+    }
+    .shui-c {
+        position: absolute;
+        top: 18px;
+        left: -2px;
+        width: 10px;
+        height: 35px;
+        background: #ffa500;
+        border-radius: 0 0 0 5px;
+    }
+    .deng:before {
+        position: absolute;
+        top: -7px;
+        left: 29px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        z-index: 999;
+        border-radius: 5px 5px 0 0;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+    .deng:after {
+        position: absolute;
+        bottom: -7px;
+        left: 10px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        margin-left: 20px;
+        border-radius: 0 0 5px 5px;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+    @font-face {
+        font-family: "华文行楷";
+        src:url('/fonts/华文行楷.ttf');
+    }
+    .deng-t {
+        font-family: 华文行楷;
+        font-size: 26px;
+        color: #dc8f03;
+        font-weight: bold;
+        line-height: 44px;
+        text-align: center;
+    }
+    .night .deng-t,
+    .night .deng-box,
+    .night .deng-box1 {
+        background: transparent !important;
+    }
+    @-moz-keyframes swing {
+        0% {
+            -moz-transform: rotate(-10deg)
+        }
+        50% {
+            -moz-transform: rotate(10deg)
+        }
+        100% {
+            -moz-transform: rotate(-10deg)
+        }
+    }
+    @-webkit-keyframes swing {
+        0% {
+            -webkit-transform: rotate(-10deg)
+        }
+        50% {
+            -webkit-transform: rotate(10deg)
+        }
+        100% {
+            -webkit-transform: rotate(-10deg)
+        }
+    }
+</style>
+<style>
+    .popup {
+        position:fixed;
+        width:100%;
+        height:100%;
+        left:0;
+        top:0;
+        background: #000;
+        opacity:0.85;
+        filter:alpha(opacity=50);
+        z-index:99999999;
+    }
+    .pop-img {
+        width: 50%;
+    }
+    .pop-img img {
+        width: 100%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .popup .col {
+        padding: 0.65rem 0!important;
+    }
+    /* 打字光标闪烁动画 */
+    .typed-cursor{
+        opacity: 0;
+        animation: typedjsBlink 3s infinite;
+        -webkit-animation: typedjsBlink 3s infinite;
+        animation: typedjsBlink 3s infinite;
+    }
+    @media only screen and (max-width: 760px) {
+        .typed-cursor{
+            display: none;
+        }
+    }
+    .typed-cursor:nth-last-of-type(1){
+        opacity: 1;
+        font-family: 华文行楷;
+        color: #dc8f03;
+    }
+    @keyframes typedjsBlink{
+        50% { opacity: 0.0; }
+    }
+    @-webkit-keyframes typedjsBlink{
+        0% { opacity: 1; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1; }
+    }
+    .typed-fade-out{
+        opacity: 0;
+        transition: opacity .25s;
+        -webkit-animation: 0;
+        animation: 0;
+    }
+    .typing {
+        text-align: center;
+    }
+    @media only screen and (min-width: 1030px) {
+        .typing {
+            margin-top: 12rem!important;
+        }
+    }
+    @media only screen and (min-width: 760px) and (max-width: 1029px) {
+        .typing {
+            margin-top: 5.8rem!important;
+        }
+    }
+    @media only screen and (min-width: 270px) and (max-width: 550px) {
+        #closedpop {
+            top: 1rem!important;
+            right: 1rem!important;
+        }
+    }
+
+    @media only screen and (max-width: 358px) {
+        .duoshuos {
+            display: none!important;
+        }
+    }
+    @media only screen and (min-width: 538px) and (max-width: 542px) {
+        .duoshuos {
+            display: none!important;
+        }
+        .pop-img img {
+            width: 82%!important;
+        }
+    }
+    .duoshuos {
+        color: pink!important;
+        writing-mode: vertical-rl!important;
+    }
+    .typing #box1,
+    .typing #box2,
+    .typing #box3,
+    .typing #box4,
+    .duoshuos
+    {
+        display: inline-block;
+        writing-mode:vertical-lr;
+        font-family: 华文行楷;
+        font-size: 26px;
+        color: #dc8f03;
+        margin: auto 0.35rem;
+    }
+    #closedpop {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        z-index: 999;
+    }
+    #closedpop img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<div th:include="head/header::springT"/>-->
+
+<!-- 主页和菜单部分开始 -->
+<div id="sky"></div>
+<canvas id="starry"></canvas>
+<header id="home" class="home-section">
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-5">
+                    <div class="logo">
+                        <a th:href="@{/index/index}">
+                            <img th:src="@{/img/loge.svg}" alt="小怪物">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <div class="navigation-menu">
+                        <div class="navbar">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">导航</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+
+                                    <li class="active"><a class="smoth-scroll" href="#home">首页<div class="ripple-wrapper"></div></a></li>
+                                    <!--<li><a class="smoth-scroll" href="#about">个人档</a></li>-->
+
+                                    <li><a class="smoth-scroll" href="#services">文章</a></li>
+                                    <li><a class="smoth-scroll" href="#portfolio">作品集</a></li>
+                                    <li><a class="smoth-scroll" th:href="@{/index/goComment}">留言</a></li>
+
+                                    <li><a class="flag" th:href="@{/login}">Admin</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    <div id="sky"></div>-->
+
+    <div class="home-section-background" data-stellar-background-ratio="0.6">
+        <div class="display-table">
+            <div class="display-table-cell">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="col-md-12 text-center">
+                                <div class="header-text"  id="typings">
+                                    <!--打字部分-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="margin-top-90">
+                            <div id="header-button" class="demo">
+                                <a href="#about" class="smoth-scroll"><span></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- 主页和菜单部分  End-->
+
+
+
+
+<!-- 关于个人档 开始 -->
+<!--<template id="color-picker-template">
+    <div class="color-picker">
+        <transition name="pop">
+
+<section id="about" class="about-section &lt;!&ndash;bg-color-f1&ndash;&gt;" v-bind:style="{'background': color}">
+    <div class="row">
+        <div class="about-me section-space-padding color-light">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <img ID="profile-img" class="img-circle img-xl" th:src="@{/img/tx.png}" draggable="false" alt="">
+            </div>
+
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <h2>个人档</h2>
+                <div class="about-me-text">
+                    &lt;!&ndash;<p>00后</p>&ndash;&gt;
+                    <p>一切都是命运石之门的选择，顺其自然。</p>
+                    <p> 热爱代码，喜欢折腾</p>
+                    <p> 河南-南阳</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="color-picker__flyout" v-if="isVisible">
+        <div class="color-chip"  v-bind:style="{'background': color}">
+            <div class="color-chip__inner">
+                &lt;!&ndash;<h1 class="color-chip__title">HSL</h1>&ndash;&gt;
+                <h3 class="color-chip__subtitle">{{ colorString }}</h3>
+            </div>
+        </div>
+        <div class="color-picker__inner">
+            <div class="control" v-bind:style="gradientH">
+                <input type="range" min="0" max="360" v-model="h" />
+            </div>
+            <div class="control" v-bind:style="gradientS">
+                <input type="range" min="0" max="100" v-model="s" />
+            </div>
+            <div class="control" v-bind:style="gradientL">
+                <input type="range" min="0" max="100" v-model="l" />
+            </div>
+        </div>
+    </div>
+        </transition>
+        <div class="swatch" v-bind:style="{'background': color}" v-on:click="toggle"></div>
+    </div>
+</template>
+<div id="app">
+    <color-picker :change="updateColor"></color-picker>
+</div>
+</section>-->
+<!-- 个人档 End -->
+
+<!-- 笔记 开始 -->
+<section id="services" class="services-section section-space-padding bg-color-f3">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title color-light">
+                    <h2>文章</h2>
+                    <!--<p>有1234556个</p>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="post">
+            <!--<div class="col-md-4 col-sm-6">
+                <div class="services-detail">
+                    <div class="article-icon">
+                        <span><a href="" rel="category tag">冒险生活</a></span>
+                    </div>
+                    <a href="">
+                        <h4>2020，学会如何在家照顾自己</h4>
+                        <hr>
+                        <p>时不时来个煎牛排配水煮青菜，或者突发奇想弄个土豆鸡肉penne，中二的内心涌起一阵骄傲，自以为连接中西方饮食文化的桥梁。</p>
+                        <span>2020年12月31日</span>
+                        <span>阅读(1198)</span>
+                        <span>评论(12)</span></a>
+                </div>
+            </div>-->
+        </div>
+
+        <div id="pagenavi" class="text-center margin-top-30">
+
+            <nav class="navigation pagination" role="navigation">
+                <h2 class="screen-reader-text"> </h2>
+                <div class="nav-links"><span aria-current='page' class='page-numbers current'>1</span>
+                    <!--<a class='page-numbers' href=''>2</a>
+                    <span class="page-numbers dots">&hellip;</span>
+                    <a class='page-numbers' href=''>15</a>
+                    <a class="next page-numbers" href="">></a>--></div>
+            </nav>
+        </div>
+
+    </div>
+</section>
+<!-- 笔记 End -->
+
+
+<!-- 作品集 开始 -->
+<section id="portfolio" class="portfolio section-space-padding bg-color-f2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title color-dark">
+                    <h2>作品集</h2>
+                    <!--<p></p>-->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <ul class="portfolio">
+                <li class="filter" data-filter="all">全部</li>
+                <li class="filter" data-filter=".tag1">游戏</li>
+                <li class="filter" data-filter=".tag2">动画</li>
+                <li class="filter" data-filter=".tag3">其它</li>
+            </ul>
+        </div>
+
+        <div class="portfolio-inner margin-top-20">
+            <noscript>
+                <p>浏览器启用JavaScript后，此处会显示作品列表。</p>
+            </noscript>
+            <div class="row" id="row">
+
+                <!--<div class="col-md-4 col-sm-6 col-xs-6 padding-0 mix tag2">
+                    <a href="https://tcxx.info/game/133.html" target="_blank">
+                        <div class="grid">
+                            <figure class="effect-sarah">
+                                <img class="img-sarah" th:src="@{/img/01.png}" alt="" />
+                                <figcaption>
+                                    <h2>猫咪大作战</h2>
+                                    <p>欣欣制作的类似于超级玛丽的动作类Flash小游戏。</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </a>
+                </div>-->
+
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<!-- 作品集 End -->
+
+<!-- 留言开始
+<section id="msg" class="contact-us section-space-padding bg-color-f4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title color-dark">
+                    <h2>留言</h2>
+                    <p>关于技术的各种，有什么想说的就写在这里吧！提点建议这里会因你变得更好！ <a href="">查看留言</a></p>
+                    <div id="contact">
+                        <div class="comment-post contact-us-detail col-md-12 margin-top-20 margin-bottom-20" id="comment-post">
+                            <div id="respond" class="comment-respond">
+                                <h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/#respond" style="display:none;">取消回复</a></small></h3>
+                                <form action="" method="post" id="commentform" class="comment-form" novalidate>
+                                    <div class="col-sm-12 textarea-message form-group">
+                                        <textarea id="comment" class="color-dark form-control" name="comment" placeholder="请输入你的评论" cols="45" rows="8" aria-required="true"></textarea>
+                                    </div>
+                                    <div class="col-sm-4 form-group"><input id="author" class="color-dark form-control" name="author" type="text" placeholder="你的昵称*" value="" size="30" aria-required='true' /></div>
+                                    <div class="col-sm-4 form-group"><input id="email" class="color-dark form-control" name="email" type="text" placeholder="你的邮箱*" value="" size="30" aria-required='true' /></div>
+                                    <div class="col-sm-4 form-group"><input id="url" class="color-dark form-control" name="url" type="text" placeholder="你的主页（选填）" value="" size="30" /></div>
+                                    <p class="form-submit">
+                                        <input name="submit" type="submit" id="submit" class="button button-style button-style-dark button-style-icon text-center button-pink submit" value="提 交" />
+                                    </p>
+                                </form>
+                            </div>
+                             #respond
+
+                        </div>
+                    </div>
+                    <div>
+                        <table width="800px" align="center">
+                            <tr>
+                                <td colspan="2"><h2>评论区</h2></td>
+
+                            </tr>
+                            <tbody id="mytbody"></tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+ 留言End -->
+
+<!-- 统计数据 -->
+<section class="statistics-section section-space-padding bg-cover text-center" data-stellar-background-ratio="0.3">
+    <div class="container">
+
+        <div class="row">
+            <div class="statistics-center">
+                <!-- This code will work at max-width: 767px -->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="statistics">
+                        <div class="statistics-icon"><i class="fa fa-rocket color-2"></i>
+                        </div>
+                        <div class="statistics-content">
+                            <h5><span data-count="0" class="statistics-count">0</span></h5><span>运行年</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="statistics">
+                        <div class="statistics-icon"><i class="fa fa-sticky-note color-1"></i>
+                        </div>
+                        <div class="statistics-content">
+                            <h5> <span data-count="0" class="statistics-count">0</span></h5><span>文章</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="statistics">
+                        <div class="statistics-icon"><i class="fa fa-pencil color-5"></i>
+                        </div>
+                        <div class="statistics-content">
+                            <h5><span data-count="0" class="statistics-count">0</span></h5><span>评论</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="statistics">
+                        <div class="statistics-icon"><i class="fa fa-eye color-4"></i>
+                        </div>
+                        <div class="statistics-content">
+                            <h5><span data-count="0" class="statistics-count">0</span></h5><span>年访问量</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 统计数据 end -->
+
+
+<!-- Footer Start -->
+
+<footer class="footer-section padding-top-50 padding-bottom-50">
+
+    <div class="container">
+        <div class="margin-bottom-20 text-center">
+            <a href="https://github.com" target="_blank" rel="nofollow" class="icon"><img th:src="@{/img/favicon/github.svg}" alt="Github"></a>
+            <a href="https://weibo.com" target="_blank" rel="nofollow" class="icon"><img th:src="@{/img/favicon/weibo.svg}" alt="Weibo"></a>
+            <a href="mailto:2877406366@qq.com" target="_blank" rel="nofollow" class="icon"><img th:src="@{/img/favicon/email.svg}" alt="Email"></a>
+        </div>
+        <!--<div class="col-md-4 text-right">
+            <p><span><a href="">友情链接</a></span> | <span><a href="">版权声明</a></span></p>
+        </div>-->
+
+        <div class="col-md-4 text-center">
+            <p>©2020-2021 </p>
+        </div>
+
+        <div class="col-md-4 text-left">
+            <p>Powered by IDEA</p>
+        </div>
+        <div class="col-md-12 text-center">
+        </div>
+    </div>
+
+    <div class="text-center">
+        <ul id="link">
+            <li><a class="small-link" title="ad" href="" target="_blank" rel="noopener noreferrer">更多</a></li>
+        </ul>
+
+    </div>
+
+</footer>
+<!-- Footer End -->
+
+<!-- All Javascript Plugins  -->
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/plugin.js}"></script>
+
+<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+
+<!--背景特效-->
+<script type="text/javascript" th:src="@{/js/starry.js}"></script>
+
+<!--typingjs-->
+<script type="text/javascript" th:src="@{/js/dojs/typing.js}"></script>
+<!--作品js-->
+<script type="text/javascript" th:src="@{/js/dojs/projects.js}"></script>
+<!--文章js-->
+<script type="text/javascript" th:src="@{/js/dojs/article.js}"></script>
+
+<!--调色器VUE-->
+<script  th:src="@{/js/vuets/index.js}"></script>
+
+
+
+<!-- Back to Top -->
+<a href="#" class="scroll-to-top">
+    <div class="cat-container">
+        <div class="cloud">
+            <span class="c-one"></span>
+            <span class="c-two"></span>
+            <span class="c-three"></span>
+            <span class="c-four"></span>
+            <p class="cloud-text">回到顶端</p>
+        </div>
+
+
+        <div class="rainbow">
+            <span class="r-one"></span>
+            <span class="r-two"></span>
+            <span class="r-three"></span>
+        </div>
+
+        <div class="cat">
+            <span class="eyes left"></span>
+            <span class="eyes right"></span>
+        </div>
+    </div>
+</a>
+<!-- Back to Top End -->
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link th:href="@{/img/favicon/faviconF.svg}" rel="shortcut icon">
+    <!-- <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="https://tcxx.info/wp-content/themes/StarryW/images/favicon/apple-touch-icon.png">-->
+
+    <!-- 所有CSS效果 -->
+    <link th:href="@{/css/plugin.css}" rel="stylesheet" type="text/css">
+
+    <!-- 主要CSS样式 -->
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+
+    <link th:href="@{/css/comment.css}" rel="stylesheet" type="text/css">
+
+    <title>LMonster</title>
+</head>
+<body data-rsssl=1>
+<div id="sky"></div>
+<div th:include="head/header::head"/>
+<section class="section-space-padding page-section">
+    <div class="container">
+        <div class="col-sm-12">
+            <header class="section-title"><h2 class="color-light margin-top-50">留言册</h2></header>
+            <span class="color-light"></span>
+        </div>
+    </div>
+</section>
+<section class="section-space-padding bg-color-l2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <article id="post-34" class="post-34 page type-page status-publish hentry">
+
+                    <div class="text-center margin-top-30 margin-bottom-30">
+                    </div>
+
+                    <!--div class="entry-content"-->
+                    <div>
+                        <!--引入网易云一言热评-->
+                        <div th:include="tool/index::wyy"/>
+                    </div><!-- .entry-content -->
+
+
+                </article><!-- #post-## -->
+
+            </div></div></div>
+
+</section>
+<!-- 留言开始 -->
+<section id="msg" class="contact-us section-space-padding bg-color-f4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title color-dark">
+                    <h2>留言</h2>
+                    <p>关于技术的各种，有什么想说的就写在这里吧！提点建议这里会因你变得更好！ <a class="smoth-scroll" href="#comshow">查看留言</a></p>
+                    <div id="contact">
+                        <div class="comment-post contact-us-detail col-md-12 margin-top-20 margin-bottom-20" id="comment-post">
+                            <div id="respond" class="comment-respond">
+                                <h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/#respond" style="display:none;">取消回复</a></small></h3>
+                                <form action="" method="post" id="commentform" class="comment-form" novalidate>
+                                    <div class="col-sm-12 textarea-message form-group">
+                                        <textarea id="comment" class="color-dark form-control" name="comment" placeholder="请输入你的评论" cols="45" rows="8" aria-required="true"></textarea>
+                                    </div>
+                                    <div class="col-sm-4 form-group"><input id="author" class="color-dark form-control" name="author" type="text" placeholder="你的昵称*" value="" size="30" aria-required='true' /></div>
+                                    <div class="col-sm-4 form-group"><input id="email" class="color-dark form-control" name="email" type="text" placeholder="你的邮箱*" value="" size="30" aria-required='true' /></div>
+                                    <div class="col-sm-4 form-group"><input id="url" class="color-dark form-control" name="url" type="text" placeholder="你的主页（选填）" value="" size="30" /></div>
+                                    <p class="form-submit">
+                                        <input name="submit" type="submit" id="submit" class="button button-style button-style-dark button-style-icon text-center button-pink submit" value="提 交" />
+                                    </p>
+                                </form>
+                            </div>
+                            <!-- #respond -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <table width="800px" align="center">
+            <tr id="comshow">
+                <td colspan="2"><h2>评论区</h2></td>
+
+            </tr>
+            <tbody id="mytbody"></tbody>
+
+        </table>
+</section>
+<!-- 留言End -->
+<!--评论js-->
+<script type="text/javascript" th:src="@{/js/dojs/comment.js}"></script>
+
+</body>
+</html>

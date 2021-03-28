@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Java自学指南 -</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" th:href="@{https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css}">
+    <script th:src="@{https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js}"></script>
+    <script th:src="@{https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <!--<link rel="shortcut icon" href="images/cx.ico" />-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style3.css}">
+</head>
+
+<body>
+<div th:include="head/bijihead::bijihead"/>
+<div class="container">
+    <div class="row">
+        <div id="articles" class="col-sm-8">
+            <div id="2" class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Java自学指南</h4>
+                </div>
+                <div class="panel-body" id="noteTable">
+
+                    <!--<div class="article">
+                        <p class="article_title"><a href="article/dfe3e669d8f249fb9b30268db2e56dca.html">Java自学指南七、规划</a></p>
+
+                        <span class="glyphicon glyphicon-time"></span> 2019-11-27
+                        <p class="article_content">方向与信仰</p>
+                    </div>
+
+                    <hr>-->
+
+                </div>
+                <div id="fy"></div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div id="series" class="list-group">
+                <a href="javascript:void(0);" class="list-group-item" style="background-color: #F1F3F4;">
+                    <h4 class="list-group-item-heading">系列笔记</h4>
+                </a>
+               <!-- <a th:href="@{/art/channel(channer=1)}" class="list-group-item  c-type-link"
+                   th:each="chan:${art}"
+                   th:text="${chan.channer}">Java自学指南</a>-->
+                                  <!--  <a href="" class="list-group-item  c-type-link">Java自学指南</a>-->
+
+            </div>
+            <hr class="hidden-sm hidden-md hidden-lg">
+        </div>
+    </div>
+</div>
+<!-- <div class="jumbotron text-center" style="margin-bottom: 0">
+     <p> <br class="hidden-md hidden-lg"><span style="font-size: 18px;">2020<a href="http://beian.miit.gov.cn" target="_blank"></a></span></p>
+ </div>-->
+<script th:src="@{/js/tj.js}"></script>
+<script th:src="@{/js/dojs/biji.js}"></script>
+
+<!--根据栏目获取笔记-->
+
+</body>
+</html>

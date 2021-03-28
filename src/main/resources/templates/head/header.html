@@ -1,0 +1,199 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- 主页和菜单部分开始 -->
+<div id="sky" th:fragment="head">
+<canvas id="starry"></canvas>
+<header id="home" class="home-section" >
+    <div class="header-top-area" >
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-5">
+                    <div class="logo">
+                        <a th:href="@{/index/index}">
+                            <!--<img th:src="@{/img/loge.svg}" alt="笔记">-->
+                            biji
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <div class="navigation-menu">
+                        <div class="navbar">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">导航</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+
+                                    <li class="active"><a class="smoth-scroll" th:href="@{/index/index/#home}">首页<div class="ripple-wrapper"></div></a></li>
+                                    <li><a class="smoth-scroll" th:href="@{/index/index/#about}">个人档</a></li>
+                                    <li><a class="smoth-scroll" th:href="@{/index/index/#portfolio}">作品集</a></li>
+                                    <li><a class="smoth-scroll" th:href="@{/index/index/#services}">文章</a></li>
+                                    <li><a class="smoth-scroll" th:href="@{/index/goComment}">留言</a></li>
+
+                                    <li><a class="flag" href="">Admin</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Javascript Plugins  -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/plugin.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+
+    <!--背景特效-->
+    <script type="text/javascript" th:src="@{/js/starry.js}"></script>
+</div>
+
+
+<!-- 春节弹窗动画模块 -->
+
+<div th:fragment="springT">
+    <div class="popup row" id="popupbb">
+        <!-- 关闭窗口叉号div -->
+        <div id="closedpop"><img th:src="@{/img/spring-popup-img/chahao.png}" title="关闭" alt=""></div>
+        <!-- 图片 -->
+        <div class="pop-img col l6 m6 s12">
+            <img th:src="@{/img/spring-popup-img/treedeng.gif}">
+        </div>
+        <!-- 打字效果 -->
+        <div class="typing col l6 m6 s12">
+            <span class="duoshuos"></span>
+            <span class="duoshuos">《元日》王安石</span>
+            <span id="box4"></span>
+            <span id="box3"></span>
+            <span id="box2"></span>
+            <span id="box1"></span>
+            <script type="text/javascript" src="https://cdn.bootcss.com/typed.js/2.0.5/typed.js"></script>
+            <script>
+                var boxObj1 = document.getElementById('box1');
+                var boxObj2 = document.getElementById('box2');
+                var boxObj3 = document.getElementById('box3');
+                var boxObj4 = document.getElementById('box4');
+                new Typed(boxObj1,{
+                    strings: ['爆竹声中一岁除，'],
+                    typeSpeed: 200,
+                    startDelay: 200,
+                    loop: false,
+                    loopCount: Infinity,
+                    cursorChar: '祝您：新年顺遂！'
+                });
+                new Typed(boxObj2,{
+                    strings: ['春风送暖入屠苏。'],
+                    typeSpeed: 100,
+                    startDelay: 200,
+                    loop: false,
+                    loopCount: Infinity,
+                    // cursorChar: '🐂'
+                });
+                new Typed(boxObj3,{
+                    strings: ['千门万户瞳瞳日，'],
+                    typeSpeed: 100,
+                    startDelay: 200,
+                    loop: false,
+                    loopCount: Infinity,
+                    // cursorChar: '🐂'
+                });
+                new Typed(boxObj4,{
+                    strings: ['总把新桃换旧符。'],
+                    typeSpeed: 100,
+                    startDelay: 200,
+                    loop: false,
+                    loopCount: Infinity,
+                    // cursorChar: '博主想要做时光机回去'
+                });
+            </script>
+        </div>
+
+        <!-- 关闭按钮模块 -->
+        <script>
+            // 点击叉号关闭上面DIV春节弹窗
+            function e(obj){return document.getElementById(obj)}
+            e('closedpop').onclick=function(event){
+                e('popupbb').style.display='none';
+                stopBubble(event);
+                document.onclick=function(){
+                    e('popupbb').style.display='none';
+                    document.onclick=null;
+                }
+            }
+            e('popupbb').onclick=function(event){
+                //只阻止了向上冒泡，而没有阻止向下捕获，所以点击con的内部对象时，仍然可以执行这个函数
+                stopBubble(event);
+            }
+            //阻止冒泡函数
+            function stopBubble(e){
+                if(e && e.stopPropagation){
+                    e.stopPropagation();    //w3c
+                }else{
+                    window.event.cancelBubble=true; //IE
+                }
+            }
+        </script>
+
+        <!-- fighting弹窗模块 -->
+        <style>
+            .fighting {
+                position:fixed;
+                /* width:40%;
+                      height:50%; */
+                padding: 10px;
+                left:0;
+                bottom:0;
+                background: #000;
+                opacity:0.65;
+                filter:alpha(opacity=10);
+                z-index:999999999;
+                display: none;
+            }
+            .fighting .duoshuo {
+                font-family: 华文行楷;
+                font-size: 18px;
+                color: #dc8f03;
+                text-indent: 2rem;
+            }
+            .fighting .duoshuo .tebie {
+                color: pink;
+                font-family: initial;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            @media only screen and (min-width: 760px) {
+                .fighting {
+                    display: block!important;
+                }
+            }
+        </style>
+        <div class="fighting">
+            <div class="duoshuo">
+                说实话，有点想你，无法克服，
+                问题很大。博主想要回到过去，
+                满眼都是小时候的画面呈现，
+                我还是那个无忧无虑的小孩，
+                去<span class="tebie" title=""> TM </span>的世界。但是我又，
+                想要人来人往都向着温柔，
+                不是妥协，只是用高级快乐，
+                去对抗生活的平庸和无聊。
+                不知道
+                <span class="tebie" title=""> Neko </span>
+                这次顶不顶得住，
+                只能说，加油吧，祝你好运，奥利给。
+                --<a class="tebie" href="" target="_blank" title="Neko said: ...">《随笔》</a>
+            </div>
+        </div>
+    </div>
+</div>

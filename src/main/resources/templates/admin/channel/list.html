@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>后台管理 - 笔记</title>
+
+    <!-- Favicons -->
+
+
+    <!-- Bootstrap -->
+    <link href="/dist/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/dist/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Theme Style -->
+    <link href="/theme/admin/dist/css/site.css" rel="stylesheet">
+    <link href="/theme/admin/dist/css/site.addons.css" rel="stylesheet">
+    <link href="/theme/admin/dist/css/skins/skin-blue.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        var _MTONS = _MTONS || {};
+        _MTONS.BASE_PATH = '';
+        _MTONS.LOGIN_TOKEN = '1';
+    </script>
+
+    <!-- jQuery -->
+    <script src="/dist/js/jquery.min.js"></script>
+    <script src="/dist/js/plugins.js"></script>
+    <!-- Bootstrap -->
+    <script src="/dist/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/dist/vendors/jquery-validation/jquery.validate.min.js'></script>
+    <script src='/dist/vendors/jquery-validation/additional-methods.js'></script>
+    <script src='/dist/vendors/jquery-validation/localization/messages_zh.min.js'></script>
+    <script src="/dist/vendors/layer/layer.js"></script>
+    <script src="/theme/admin/dist/js/site.js"></script>
+    <script src="/theme/admin/dist/js/site.base.js"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <section class="content-header">
+        <h1>栏目管理</h1>
+        <ol class="breadcrumb">
+            <li><a th:href="@{/system/main}"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li class="active">栏目管理</li>
+        </ol>
+    </section>
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">栏目列表</h3>
+                        <div class="box-tools">
+                            <a class="btn btn-default btn-sm" href="/admin/channel/view">添加栏目</a>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive" >
+                            <table id="dataGrid" class="table table-striped table-bordered" >
+                                <thead>
+                                <tr>
+                                    <th width="80">#</th>
+                                    <th>名称</th>
+                                    <th>Key</th>
+                                    <th>状态</th>
+                                    <th width="140">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="chan:${channer}">
+                                    <td th:text="${chan.id}">2</td>
+                                    <td th:text="${chan.name}">博客</td>
+                                    <td th:text="${chan.name}">blog</td>
+                                    <td th:text="${chan.status}">
+                                        显示
+                                    </td>
+                                    <td>
+                                        <a href="view?id=2" class="btn btn-xs btn-success">修改</a>
+                                        <a href="javascript:void(0);" class="btn btn-xs btn-primary" data-id="2"
+                                           data-action="delete">删除</a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        var J = jQuery;
+
+        function ajaxReload(json) {
+            if (json.code >= 0) {
+                if (json.message != null && json.message != '') {
+                    layer.msg(json.message, {icon: 1});
+                }
+                window.location.reload();
+            } else {
+                layer.msg(json.message, {icon: 2});
+            }
+        }
+
+        function doUpdateWeight(id, weight) {
+            J.getJSON('/admin/channel/weight', J.param({'id': id, 'weight': weight}, true), ajaxReload);
+        }
+
+        $(function () {
+            $('#dataGrid a[data-action="weight"]').bind('click', function(){
+                var that = $(this);
+                layer.confirm('确定将该项排序在第一位吗?', {
+                    btn: ['确定','取消'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    doUpdateWeight(that.attr('data-id'), 1);
+                }, function(){
+                });
+                return false;
+            });
+
+            // 删除
+            $('#dataGrid a[data-action="delete"]').bind('click', function () {
+                var that = $(this);
+
+                layer.confirm('确定删除此项吗?', {
+                    btn: ['确定', '取消'], //按钮
+                    shade: false //不显示遮罩
+                }, function () {
+                    J.getJSON('/admin/channel/delete', {id: that.attr('data-id')}, ajaxReload);
+                }, function () {
+                });
+                return false;
+            });
+
+        })
+    </script>
+
+</body>
+</html>

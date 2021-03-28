@@ -1,0 +1,54 @@
+13:17:55.055 [main] INFO  c.a.m.LmonsterApplication - [logStarting,55] - Starting LmonsterApplication using Java 1.8.0_144 on CXP-COMPUTER with PID 7624 (D:\HelloWorld\SpringBootLearn\lmonster\target\classes started by CXP in D:\HelloWorld\SpringBootLearn\lmonster)
+13:17:55.065 [main] INFO  c.a.m.LmonsterApplication - [logStartupProfileInfo,660] - No active profile set, falling back to default profiles: default
+13:17:56.576 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+13:17:56.576 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+13:17:56.576 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.41]
+13:17:56.676 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+13:17:57.806 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+13:17:57.846 [main] INFO  c.a.m.LmonsterApplication - [logStarted,61] - Started LmonsterApplication in 3.484 seconds (JVM running for 7.977)
+13:18:36.178 [http-nio-8080-exec-2] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [1587274185,1587274214; UM_distinctid=17516c7de0f4a6-0e8e55603e49a5-333376b-144000-17516c7de10408; CNZZDATA1272564536=505535952-1602402667-%7C1602412121; CNZZDATA1263868967=1739748623-1602400700-%7C1602414003; Idea-2a3209=a198024e-c21f-4a40-8f2e-b1af8b74645c; Hm_lvt_a029e6c6dddf427f4cbfb2b00d7d5311=1603457312; Hm_lvt_583e193bb2a3f967bf4daf8351bae5df=1606564397; Idea-2a320a=d5c1a7c9-4b87-49c9-9908-6dd8d42b076c; Hm_lvt_58b099fbb45377f761889db0aa3e3d98=1606577810; CNZZDATA1279041876=1046935091-1610696343-%7C1610696343; Idea-2a320b=8972e963-3ecd-4be4-97a7-5bd203e62f50; __gads=ID=12afeeb89a93a544-226bd25ee2c5006f:T=1612058224:RT=1612058224:S=ALNI_MbgXwe_5Wd1bj4FL96nS9n6KdSIVA; Hm_lvt_eb5c76c5e3273daabcb8820fdc0992c0=1612063624; _ga=GA1.1.150304311.1613659159; ts_uid=5036673201; Hm_lvt_ea4269d8a00e95fdb9ee61e3041a8f98=1615535029,1615539814] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+13:18:36.190 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+13:19:19.730 [http-nio-8080-exec-18] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+13:19:20.233 [http-nio-8080-exec-18] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+13:33:59.198 [SpringContextShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+13:33:59.208 [SpringContextShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+13:34:06.036 [main] INFO  c.a.m.LmonsterApplication - [logStarting,55] - Starting LmonsterApplication using Java 1.8.0_144 on CXP-COMPUTER with PID 6108 (D:\HelloWorld\SpringBootLearn\lmonster\target\classes started by CXP in D:\HelloWorld\SpringBootLearn\lmonster)
+13:34:06.046 [main] INFO  c.a.m.LmonsterApplication - [logStartupProfileInfo,660] - No active profile set, falling back to default profiles: default
+13:34:07.456 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+13:34:07.456 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+13:34:07.456 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.41]
+13:34:07.556 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+13:34:08.556 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+13:34:08.596 [main] INFO  c.a.m.LmonsterApplication - [logStarted,61] - Started LmonsterApplication in 3.65 seconds (JVM running for 6.616)
+13:38:21.286 [main] INFO  c.a.m.LmonsterApplication - [logStarting,55] - Starting LmonsterApplication using Java 1.8.0_144 on CXP-COMPUTER with PID 13004 (D:\HelloWorld\SpringBootLearn\lmonster\target\classes started by CXP in D:\HelloWorld\SpringBootLearn\lmonster)
+13:38:21.286 [main] INFO  c.a.m.LmonsterApplication - [logStartupProfileInfo,660] - No active profile set, falling back to default profiles: default
+13:38:22.738 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+13:38:22.748 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+13:38:22.748 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.41]
+13:38:22.858 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+13:38:23.858 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+13:38:23.888 [main] INFO  c.a.m.LmonsterApplication - [logStarted,61] - Started LmonsterApplication in 3.68 seconds (JVM running for 6.686)
+13:38:43.233 [http-nio-8080-exec-2] INFO  o.a.t.u.h.p.Cookie - [log,173] - A cookie header was received [1587274185,1587274214; UM_distinctid=17516c7de0f4a6-0e8e55603e49a5-333376b-144000-17516c7de10408; CNZZDATA1272564536=505535952-1602402667-%7C1602412121; CNZZDATA1263868967=1739748623-1602400700-%7C1602414003; Idea-2a3209=a198024e-c21f-4a40-8f2e-b1af8b74645c; Hm_lvt_a029e6c6dddf427f4cbfb2b00d7d5311=1603457312; Hm_lvt_583e193bb2a3f967bf4daf8351bae5df=1606564397; Idea-2a320a=d5c1a7c9-4b87-49c9-9908-6dd8d42b076c; Hm_lvt_58b099fbb45377f761889db0aa3e3d98=1606577810; CNZZDATA1279041876=1046935091-1610696343-%7C1610696343; Idea-2a320b=8972e963-3ecd-4be4-97a7-5bd203e62f50; __gads=ID=12afeeb89a93a544-226bd25ee2c5006f:T=1612058224:RT=1612058224:S=ALNI_MbgXwe_5Wd1bj4FL96nS9n6KdSIVA; Hm_lvt_eb5c76c5e3273daabcb8820fdc0992c0=1612063624; _ga=GA1.1.150304311.1613659159; ts_uid=5036673201; Hm_lvt_ea4269d8a00e95fdb9ee61e3041a8f98=1615535029,1615539814; JSESSIONID=DCE7D35684ACB88BD20D523249183F01] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.
+13:38:43.245 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+13:38:44.963 [http-nio-8080-exec-9] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+13:38:45.184 [http-nio-8080-exec-9] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+13:39:25.845 [SpringContextShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+13:39:25.855 [SpringContextShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+13:39:31.932 [main] INFO  c.a.m.LmonsterApplication - [logStarting,55] - Starting LmonsterApplication using Java 1.8.0_144 on CXP-COMPUTER with PID 14160 (D:\HelloWorld\SpringBootLearn\lmonster\target\classes started by CXP in D:\HelloWorld\SpringBootLearn\lmonster)
+13:39:31.932 [main] INFO  c.a.m.LmonsterApplication - [logStartupProfileInfo,660] - No active profile set, falling back to default profiles: default
+13:39:33.452 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+13:39:33.462 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+13:39:33.462 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.41]
+13:39:33.552 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+13:39:34.502 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+13:39:34.543 [main] INFO  c.a.m.LmonsterApplication - [logStarted,61] - Started LmonsterApplication in 3.561 seconds (JVM running for 6.216)
+13:39:59.800 [main] INFO  c.a.m.LmonsterApplication - [logStarting,55] - Starting LmonsterApplication using Java 1.8.0_144 on CXP-COMPUTER with PID 11404 (D:\HelloWorld\SpringBootLearn\lmonster\target\classes started by CXP in D:\HelloWorld\SpringBootLearn\lmonster)
+13:39:59.800 [main] INFO  c.a.m.LmonsterApplication - [logStartupProfileInfo,660] - No active profile set, falling back to default profiles: default
+13:40:01.148 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+13:40:01.148 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+13:40:01.148 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.41]
+13:40:01.248 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+13:40:02.198 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+13:40:02.238 [main] INFO  c.a.m.LmonsterApplication - [logStarted,61] - Started LmonsterApplication in 3.455 seconds (JVM running for 6.277)

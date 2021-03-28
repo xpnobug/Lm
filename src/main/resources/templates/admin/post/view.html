@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文章管理</title>
+
+    <!-- Favicons -->
+
+
+    <!-- Bootstrap -->
+    <link th:href="@{/dist/vendors/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/dist/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+
+
+    <!-- Theme Style -->
+
+    <link th:href="@{/theme/admin/dist/css/site.css}" rel="stylesheet">
+    <link th:href="@{/theme/admin/dist/css/site.addons.css}" rel="stylesheet">
+    <link th:href="@{/theme/admin/dist/css/skins/skin-blue.css}" rel="stylesheet">
+
+
+
+    <!-- jQuery -->
+    <script th:src="@{/dist/js/jquery.min.js}"></script>
+    <script th:src="@{/dist/js/plugins.js}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{/dist/vendors/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src='@{/dist/vendors/jquery-validation/jquery.validate.min.js}'></script>
+    <script th:src='@{/dist/vendors/jquery-validation/additional-methods.js}'></script>
+    <script th:src='@{/dist/vendors/jquery-validation/localization/messages_zh.min.js}'></script>
+    <script th:src="@{/dist/vendors/layer/layer.js}"></script>
+    <script th:src="@{/theme/admin/dist/js/site.js}"></script>
+    <script th:src="@{/theme/admin/dist/js/site.base.js}"></script>
+
+
+    <!--<script th:src="@{/ruoyi/js/ry-ui.js}"></script>-->
+    <!--引入markdown博客编辑-->
+    <link rel="stylesheet" href="/markdown/css/editormd.min.css" th:href="@{/markdown/css/editormd.min.css}">
+
+    <script src="/markdown/editormd.min.js" th:src="@{/markdown/editormd.min.js}"></script>
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+<link rel='stylesheet' media='all' th:href='@{/dist/css/plugins.css}'/>
+<script type="text/javascript" th:src="@{/dist/vendors/bootstrap-tagsinput/bootstrap-tagsinput.js}"></script>
+
+<section class="content-header">
+    <h1>文章编辑</h1>
+    <ol class="breadcrumb">
+        <li><a href="/admin">首页</a></li>
+        <li><a href="/admin/post/list">文章管理</a></li>
+        <li class="active">文章编辑</li>
+    </ol>
+</section>
+<section class="content container-fluid">
+    <div class="row">
+        <form id="qForm" method="post" action="/admin/post/artadd">
+            <input type="hidden" name="status" value="0"/>
+            <input type="hidden" name="editor" value="markdown"/>
+            <input type="hidden" id="thumbnail" name="thumbnail" value="">
+            <div class="col-md-9 side-left">
+                <div class="required field">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">文章编辑</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="title" value="" maxlength="64" placeholder="文章标题" required >
+                            </div>
+                            <!--引入markdown-->
+                            <div id="md-content" style=" z-index: 1 !important;">
+                                <textarea placeholder="博客内容" name="content" id="content"  style="display:none;" th:text="*{content}"></textarea>
+                            </div>
+
+                            <script>
+                                // 初始化MarkDown编辑器
+                                var contentEditor;
+                                $(function() {
+                                    contentEditor = editormd("md-content", {
+                                        width   : "100%",
+                                        height  : 640,
+                                        syncScrolling : "single",
+                                        path    : "/markdown/lib/"     /*因为application.yml中配置了项目根路径为/blog，所以要加上才能访问*/
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+
+                <!--<div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">文章编辑</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="title" value="" maxlength="64" placeholder="文章标题" required >
+                        </div>
+                        <div class="form-group">
+                            <link href="/dist/vendors/codemirror/lib/codemirror.css" rel="stylesheet">
+                            <link href="/dist/vendors/codemirror/theme/idea.css" rel="stylesheet">
+                            <link href="/dist/css/editor.css" rel="stylesheet">
+                            <script type="text/javascript" charset="utf-8" src="/dist/vendors/codemirror/lib/codemirror.js"></script>
+                            <script type="text/javascript" charset="utf-8" src="/dist/vendors/codemirror/mode/markdown/markdown.js"></script>
+                            <script type="text/javascript" charset="utf-8" src="/dist/vendors/codemirror/keymap/sublime.js"></script>
+                            <script type="text/javascript" charset="utf-8" src="/dist/vendors/marked/marked.min.js"></script>
+                            <script type="text/javascript" charset="utf-8" src="/dist/js/app.markdown.js"></script>
+                            <div class="md-editor">
+                                <div class="editor-toolbar">
+                                    <button type="button" event="undo">
+                                        <i class="icon fa fa-rotate-left"></i>
+                                    </button>
+                                    <button type="button" event="redo">
+                                        <i class="icon fa fa-rotate-right"></i>
+                                    </button>
+                                    <i class="separator">|</i>
+                                    <button type="button" event="bold">
+                                        <i class="icon fa fa-bold"></i>
+                                    </button>
+                                    <button type="button" event="italic">
+                                        <i class="icon fa fa-italic"></i>
+                                    </button>
+                                    <button type="button" event="h2">
+                                        <i class="icon fa fa-header"></i>
+                                    </button>
+                                    <button type="button" event="blockquote">
+                                        <i class="icon fa fa-quote-left"></i>
+                                    </button>
+                                    <button type="button" event="link">
+                                        <i class="icon fa fa-link"></i>
+                                    </button>
+                                    <button type="button" event="image">
+                                        <i class="icon fa fa-image"></i>
+                                    </button>
+                                    <button type="button" event="uploadimage">
+                                        <i class="icon fa fa-file-image-o"></i>
+                                    </button>
+                                    <button type="button" event="inlinecode">
+                                        <i class="icon fa fa-code"></i>
+                                    </button>
+                                    <i class="separator">|</i>
+                                    <button type="button" class="active" event="premode" data-value="editMode">
+                                        <i class="icon fa fa-tablet"></i>
+                                    </button>
+                                    <button type="button" event="premode" data-value="liveMode">
+                                        <i class="icon fa fa-columns"></i>
+                                    </button>
+                                    <button type="button" event="premode" data-value="previewMode">
+                                        <i class="icon fa fa-desktop"></i>
+                                    </button>
+                                    <i class="separator">|</i>
+                                    <button type="button" event="fullscreen">
+                                        <i class="icon fa fa-arrows-alt"></i>
+                                    </button>
+                                </div>
+                                <div class="editor-container editMode">
+                                    <div class="editor-body">
+                                        <textarea id="content" name="content" rows="5" class="form-control" required></textarea>
+                                    </div>
+                                    <div class="editor-preview markdown-body">
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    MdEditor.initEditor();
+                                });
+                            </script>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-md-3 side-right">
+                <div class="form-group">
+                    <textarea name="present" cols="" rows="" placeholder="文章简介" style="margin: 0px;width: 300px;height: 143px;"></textarea>
+                </div>
+                <!--<div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">预览图</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="thumbnail-box">
+                            <div class="convent_choice" id="thumbnail_image" style="background: url(${thumbnail})">
+                                <div class="upload-btn">
+                                    <label>
+                                        <span>点击选择一张图片</span>
+                                        <input id="upload_btn" type="file" name="file" accept="image/*" title="点击添加图片">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="box">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>栏目</label>
+                            <select class="form-control" name="queryChanner">
+                                <option
+                                        th:each="chan:${channer}"
+                                        th:value="${chan.id}"
+                                        th:text="${chan.name}"
+                                        th:selected="${chan.id eq queryChanner}"
+                                ></option>
+                            </select>
+                        </div>
+                        <!--<div class="form-group">
+                            <label>标签</label>
+                            <input type="text" name="tags" data-role="tagsinput" class="form-control" value="" placeholder="添加相关标签，逗号分隔 (最多4个)">
+                        </div>-->
+                    </div>
+                    <div class="box-footer">
+                        <!--<button type="button" data-status="1" class="btn btn-default btn-sm" event="post_submit">草稿</button>-->
+                        <button type="button" data-status="0" class="btn btn-primary btn-sm pull-right" event="post_submit">发布</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script type="text/javascript">
+    $(function() {
+        $('#upload_btn').change(function(){
+            var thumbnail_image = document.querySelector('#thumbnail_image');
+            $(this).upload('/post/upload?crop=thumbnail_post_size', function(data){
+                if (data.status == 200) {
+                    var path = data.path;
+                    $("#thumbnail_image").css("background", "url(" + path + ") no-repeat scroll center 0 rgba(0, 0, 0, 0)");
+                    $("#thumbnail").val(path);
+                }
+            });
+        });
+
+        $('button[event="post_submit"]').click(function () {
+            var status = $(this).data('status');
+            $("input[name='status']").val(status);
+            $("form").submit();
+        });
+
+        $("form").submit(function () {
+            if (typeof tinyMCE == "function") {
+                tinyMCE.triggerSave();
+            }
+        }).validate({
+            ignore: "",
+            rules: {
+                title: "required",
+                content: {
+                    required: true,
+                    check_editor: true
+                }
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                error.addClass("help-block");
+
+                if (element.prop("type") === "checkbox") {
+                    error.insertAfter(element.parent("label"));
+                } else if (element.is("textarea")) {
+                    error.insertAfter(element.next());
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).closest("div").addClass("has-error").removeClass("has-success");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).closest("div").addClass("has-success").removeClass("has-error");
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

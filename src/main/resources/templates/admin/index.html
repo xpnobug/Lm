@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>后台管理</title>
+
+    <!-- Favicons -->
+
+
+    <!-- Bootstrap -->
+    <link th:href="@{/dist/vendors/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/dist/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+
+
+    <!-- Theme Style -->
+
+    <link th:href="@{/theme/admin/dist/css/site.css}" rel="stylesheet">
+    <link th:href="@{/theme/admin/dist/css/site.addons.css}" rel="stylesheet">
+    <link th:href="@{/theme/admin/dist/css/skins/skin-blue.css}" rel="stylesheet">
+    <link th:href="@{/ruoyi/css/skins.css}" rel="stylesheet">
+
+
+
+    <!-- jQuery -->
+    <script th:src="@{/dist/js/jquery.min.js}"></script>
+    <script th:src="@{/dist/js/plugins.js}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{/dist/vendors/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src='@{/dist/vendors/jquery-validation/jquery.validate.min.js}'></script>
+    <script th:src='@{/dist/vendors/jquery-validation/additional-methods.js}'></script>
+    <script th:src='@{/dist/vendors/jquery-validation/localization/messages_zh.min.js}'></script>
+    <script th:src="@{/dist/vendors/layer/layer.js}"></script>
+    <script th:src="@{/theme/admin/dist/js/site.js}"></script>
+    <script th:src="@{/theme/admin/dist/js/site.base.js}"></script>
+
+
+    <script th:src="@{/ruoyi/js/ry-ui.js}"></script>
+
+
+
+</head>
+<body class="hold-transition gray-bg skin-green theme-drak  sidebar-mini" style="overflow: hidden">
+<div class="wrapper">
+    <!-- 右侧部分开始 -->
+    <header class="main-header">
+        <a th:href="@{/system/main}" class="logo">
+            <span class="logo-mini">笔记</span>
+            <span class="logo-lg"><b>笔记</b>管理</span>
+        </a>
+        <nav class="navbar navbar-static-top">
+            <a th:href="@{#}" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/}" title="跳转到前台" target="_blank"><i class="fa fa-television"></i></a></li>
+                    <li class="messages-menu">
+                        <a th:href="@{/users/1/messages}">
+                            <i class="fa fa-envelope-o"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a th:href="@{#}" class="dropdown-toggle" data-toggle="dropdown">
+                            <img th:src="${session.loginuser.avatar}" class="user-image" alt="User Image">
+                            <span class="hidden-xs" th:text="${session.loginuser.name}" >admin</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="user-header">
+                                <img th:src="${session.loginuser.avatar}" class="img-circle" alt="User Image">
+                                <p th:text="${session.loginuser.name}"> </p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <!--<a th:href="@{/settings/profile}" class="btn btn-default btn-flat">个人资料</a>-->
+                                    <a onclick="switchSkin()">
+                                        <i class="fa fa-dashboard"></i> 切换主题</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a th:href="@{/loginout}" class="btn btn-default btn-flat">退出登录</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--右侧部分结束-->
+
+    <!-- iframe 内容包装器。包含页面内容 -->
+    <div class="content-wrapper mainContent" id="content-main" style="height: 400px">
+        <iframe th:src="@{/system/main}" class="RuoYi_iframe" name="tz" width="100%" height="100%" id="tz">
+
+        </iframe>
+    </div>
+
+    <!--左侧导航开始-->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img th:src="@{/img/tx.png}" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p th:text="${session.loginuser.name}">admin</p>
+                    <a th:href="@{#}"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+
+
+            <!-- Sidebar Menu -->
+                <ul class="sidebar-menu" data-widget="tree" id="menulist">
+                    <li class="header">MENUS</li>
+
+                    <li class="active">
+                        <a th:href="@{/admin}"><i class="fa fa-dashboard"></i><span>首页</span></a>
+                    </li>
+                    <li th:each="menu : ${menus}" >
+                        <a th:class="@{${!#strings.isEmpty(menu.url) && menu.url != '#'} ? |menuItem| : ${menu.target}}" target="tz"  th:href="@{${menu.url}} ">
+                            <i th:class="${menu.icon}"></i><span th:text="${menu.menuName}">栏目管理</span>
+                            <span th:class="${#strings.isEmpty(menu.url) || menu.url == '#'} ? |fa arrow|"></span>
+                        </a>
+                    </li>
+                </ul>
+
+
+        </section>
+    </aside>
+
+    <!--左侧导航结束-->
+
+
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">3.5.0</div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2019-2021 <a th:href="@{#}">biji</a>.</strong> All rights reserved.
+    </footer>
+</div>
+
+<script>
+    $(function () {
+
+        function menuItem() {
+            // 获取标识数据
+            var dataUrl = $(this).attr('href');
+
+            dataIndex = $.common.random(1, 100);
+            // 添加选项卡对应的iframe
+            var str1 = '<iframe class="RuoYi_iframe" name="iframe' + dataIndex + '" width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" seamless></iframe>';
+            $('.mainContent').find('iframe.RuoYi_iframe').hide().parents('.mainContent').append(str1);
+            //$('.mainContent').append(str1);
+
+        }
+        $('.menuItem').on('click', menuItem);
+
+        $('#menulist').on('click', 'li', function () {   $(this).addClass('active').siblings().removeClass('active');})
+    })
+
+</script>
+
+
+<script type="text/javascript" th:inline="javascript">
+    var ctx = [[@{/}]];
+    // 皮肤缓存
+    var skin = storage.get("skin");
+
+
+    // 本地主题优先，未设置取系统配置
+    if($.common.isNotEmpty(skin)){
+        $("body").addClass(skin.split('|')[0]);
+        $("body").addClass(skin.split('|')[1]);
+    } else {
+        $("body").addClass([[${sideTheme}]]);
+        $("body").addClass([[${skinName}]]);
+    }
+
+    /* 切换主题 */
+   function switchSkin() {
+       layer.open({
+           type : 2,
+           shadeClose : true,
+           title : "切换主题",
+           area : ["530px", "386px"],
+           content : [ctx + "system/switchSkin", 'no']
+       })
+   }
+
+
+</script>
+
+</body>
+</html>

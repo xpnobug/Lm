@@ -1,0 +1,59 @@
+.comment-body a {
+    position: relative;
+}
+.pull-left {
+    float: left;
+}
+.thumb-sm {
+    display: inline-block;
+    width: 40px;
+}
+.pull-left {
+    float: left!important;
+}
+.m-b {
+    margin-bottom: 15px;
+}
+.m-l-xxl {
+    margin-left: 50px;
+}
+.comment-body a {
+    position: relative;
+}
+
+.night .text-muted {
+    color: #777;
+}
+.text-muted {
+    color: rgba(255,255,255,.8);
+}
+.text-muted {
+    color: #a0a0a0;
+}
+.text-xs {
+    font-size: 12px;
+}
+.block {
+    display: block;
+}
+.m-t-sm {
+    margin-top: 10px;
+}
+
+.comment-author-at {
+    float: left;
+    margin-right: 5px;
+}
+.night .comment-content-true {
+    color: rgba(255,255,255,.7);
+}
+.comment-content-true {
+    display: block;
+}
+
+.comment-parent {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,.3);
+}

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.monster.mapper.ChannelMapper">
+
+    <resultMap type="channel"        id="Channel">
+        <id     property="id"       column="id"      />
+        <result property="name"     column="name"    />
+        <result property="static"   column="static"  />
+    </resultMap>
+
+
+    <!--获取所有-->
+    <select id="selectChannel" resultMap="Channel">
+        select * from Channel
+    </select>
+    <!--根据id获取文章-->
+    <select id="selChannelbyId" resultMap="Channel">
+        select * from channel where id=#{id}
+    </select>
+
+
+    <!--添加-->
+    <insert id="addChannel" parameterType="channel">
+        insert into channel (name,static)
+        values (#{name},#{static})
+    </insert>
+
+    <!--修改-->
+    <update id="updChannel" parameterType="channel">
+
+        update channel
+        <set>
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="static!=null and static!=''">
+                static=#{static}
+            </if>
+
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--删除-->
+    <delete id="delChannel" parameterType="int">
+        delete from channel where id=#{id}
+    </delete>
+</mapper>

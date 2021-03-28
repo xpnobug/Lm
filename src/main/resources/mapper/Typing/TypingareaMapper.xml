@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.monster.mapper.TypingareaMapper">
+
+    <resultMap type="typingarea"        id="Typingarea">
+        <id     property="typ_id"           column="typ_id"             />
+        <result property="typ_name"     column="typ_name"       />
+        <result property="typ_content"  column="typ_content"    />
+    </resultMap>
+
+    <select id="selectTyp" parameterType="Typingarea" resultMap="Typingarea">
+        select * from typingarea
+    </select>
+
+    <select id="selectTyping" parameterType="Typingarea" resultMap="Typingarea">
+         select * from typingarea
+    </select>
+
+    <update id="updateTyping" parameterType="Typingarea">
+        update typingarea
+        <set>
+            <if test="typ_name != null and typ_name != ''">typ_name = #{typ_name},</if>
+            <if test="typ_content != null and typ_content != ''">typ_content = #{typ_content}</if>
+        </set>
+        where typ_id = #{typ_id}
+    </update>
+</mapper>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link th:href="@{/img/favicon/faviconF.svg}" rel="shortcut icon">
+    <!-- <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="https://tcxx.info/wp-content/themes/StarryW/images/favicon/apple-touch-icon.png">-->
+
+    <!-- 所有CSS效果 -->
+    <link th:href="@{/css/plugin.css}" rel="stylesheet" type="text/css">
+
+    <!-- 主要CSS样式 -->
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+
+    <title>LMonster</title>
+    <style>
+        #main {
+            box-shadow: 10px 10px 2px #ddd;
+        }
+        #main {
+            background: #fff;
+            width: 960px;
+            margin: 0 auto;
+        }
+        #primary {
+            position: relative;
+            margin-left: 20px;
+        }
+        #content {
+            /*width: 680px;
+            margin: 0 auto;*/
+             padding: 20px;
+        }
+        .hentry {
+            margin: 0 10px 0 0;
+            /* width: 400px; */
+            padding: 30px 80px 50px 80px;
+            display: block;
+            position: relative;
+        }
+        .entry-header {
+            margin-bottom: 20px;
+        }
+        .entry-title, .entry-title a {
+            font-size: 25px;
+            font-weight: normal;
+            font-family: microsoft yahei,STXihei;
+        }
+        .entry-content {
+            border-bottom: 1px solid #ccc;
+        }
+        .entry-content p {
+            margin: 24px 0;
+        }
+        a, a:link, a:visited {
+            color: #777;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body data-rsssl=1>
+<div id="sky"></div>
+<div th:include="head/header::head"/>
+<section class="section-space-padding page-section">
+    <div class="container">
+        <div class="col-sm-12">
+            <header class="section-title"><h2 class="color-light margin-top-50" th:text="${projects.pro_title}"></h2></header>
+            <span class="color-light"></span>
+        </div>
+    </div>
+</section>
+<section class="section-space-padding bg-color-l2">
+    <div id="main">
+        <div id="primary">
+            <div id="content" role="main">
+                <article id="post-8205" class="hentry">
+                    <header class="entry-header">
+                        <div class="entry-title">
+                            <h1 class="entry-title" th:text="${projects.pro_title}">标题</h1>
+                        </div>
+
+                        <div class="sp-meta">
+                            <a href=""><span th:text="${#dates.format(projects.pro_date,'yyyy-MM-dd')}">时间</span></a>
+                        </div>
+                    </header>
+
+                    <div class="entry-content" th:utext="${projects.pro_content}">
+                        <p></p>
+
+                    </div>
+                </article>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

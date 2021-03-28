@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>后台管理</title>
+
+    <!-- Favicons -->
+
+
+    <!-- Bootstrap -->
+    <link th:href="@{/dist/vendors/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/dist/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+    <!-- Theme Style -->
+    <link th:href="@{/theme/admin/dist/css/site.css}" rel="stylesheet">
+    <link th:href="@{/theme/admin/dist/css/site.addons.css}" rel="stylesheet">
+    <link th:href="@{/theme/admin/dist/css/skins/skin-blue.css}" rel="stylesheet">
+
+    <script type="text/javascript">
+        var _MTONS = _MTONS || {};
+        _MTONS.BASE_PATH = '';
+        _MTONS.LOGIN_TOKEN = '1';
+    </script>
+
+    <!-- jQuery -->
+    <script th:src="@{/dist/js/jquery.min.js}"></script>
+    <script th:src="@{/dist/js/plugins.js}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{/dist/vendors/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src='@{/dist/vendors/jquery-validation/jquery.validate.min.js}'></script>
+    <script th:src='@{/dist/vendors/jquery-validation/additional-methods.js}'></script>
+    <script th:src='@{/dist/vendors/jquery-validation/localization/messages_zh.min.js}'></script>
+    <script th:src="@{/dist/vendors/layer/layer.js}"></script>
+    <script th:src="@{/theme/admin/dist/js/site.js}"></script>
+    <script th:src="@{/theme/admin/dist/js/site.base.js}"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+<section class="content-header">
+    <h1>首页</h1>
+    <ol class="breadcrumb">
+        <li><a th:href="@{/system/main}"><i class="fa fa-dashboard"></i> 首页</a></li>
+       <!-- <li class="active">仪表盘</li>-->
+    </ol>
+</section>
+<section class="content container-fluid">
+    <div class="row">
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3 th:text="${page}">3</h3>
+                    <p>笔记</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-clone"></i>
+                </div>
+                <a th:href="@{/admin/post/likepost}" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>4</h3>
+                    <p>栏目</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <a th:href="@{/admin/channel/list}" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3 th:text="${comment}">1</h3>
+                    <p>留言</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-comments-o"></i>
+                </div>
+                <a th:href="@{/admin/comment/list}" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>1</h3>
+                    <p>用户</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user"></i>
+                </div>
+                <a th:href="@{/admin/user}" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+
+        <div class="col-md-6">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">最新评论</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body chat" id="chat-box">
+                    <!-- chat item -->
+                    <div class="item">
+                        <p>没有最新内容</p>
+                    </div>
+                    <!-- /.item -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    var J = jQuery;
+    $(function () {
+        J.getJSON('/admin/comment/list', function (result) {
+
+            if (result.length > 0) {
+                var template = $('#chat')[0].text;
+                var html = [];
+                J.each(result, function (i, n) {
+                    var row = J.format(template, n.avatar, n.id, n.cdata, n.author, n.content);
+                    html.push(row);
+                })
+                $('#chat-box').html(html);
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>笔记管理登录</title>
+
+    <link rel="stylesheet" href="/admin/css/normalize.css" th:href="@{/admin/css/normalize.css}">
+    <link rel="stylesheet" href="/admin/css/grid.css"      th:href="@{/admin/css/grid.css}">
+    <link rel="stylesheet" href="/admin/css/style.css"     th:href="@{/admin/css/style.css}">
+    <link rel="stylesheet" href="/admin/css/suya.css"      th:href="@{/admin/css/suya.css}">
+
+    <script src="/ABZU/resource/admin/js/jquery.js"     th:src="@{/admin/js/jquery.js}"></script>
+    <script src="/ABZU/resource/admin/js/jquery-ui.js"  th:src="@{/admin/js/jquery.js}"></script>
+    <script src="/ABZU/resource/admin/js/typecho.js"    th:src="@{/admin/js/jquery.js}"></script>
+
+</head>
+<body>
+<div class="typecho-login-wrap">
+    <div class="typecho-login">
+        <!--<h1><a href="" class="i-logo">笔记管理系统</a></h1>-->
+        <h1>笔记管理系统</h1>
+        <form action="/login" method="post" name="login" role="form">
+            <p>
+                <label for="name" class="sr-only">用户名</label>
+                <input type="text" id="name" name="username" value="" placeholder="用户名" class="text-l w-100" autofocus />
+            </p>
+            <p>
+                <label for="password" class="sr-only">密码</label>
+                <input type="password" id="password" name="password" class="text-l w-100" placeholder="密码" />
+            </p>
+            <p class="submit">
+                <button type="submit" class="btn btn-l w-100 primary">登录</button>
+                <input type="hidden" name="referer" value="home/index" />
+            </p>
+            <!--<p>
+                <label for="remember"><input type="checkbox" name="remember" class="checkbox" value="1" id="remember" /> 下次自动登录</label>
+            </p>-->
+        </form>
+
+        <p class="more-link"><a href="">返回首页</a></p>
+    </div>
+</div>
+</body>
+</html>

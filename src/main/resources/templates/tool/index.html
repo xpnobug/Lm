@@ -1,0 +1,76 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="wyy">
+<style>
+    /* 增加每日一言模块 */
+    .poem-wrap {
+        position: relative;
+        width: 730px;
+        max-width: 80%;
+        border: 2px solid #797979;
+        border-top: 0;
+        text-align: center;
+        margin: 80px auto;
+    }
+    .poem-left {
+        left: 0;
+    }
+    .poem-border {
+        position: absolute;
+        height: 2px;
+        width: 27%;
+        background-color: #797979;
+    }
+    .poem-right {
+        right: 0;
+    }
+    .poem-wrap h1 {
+        position: relative;
+        margin-top: -20px;
+        display: inline-block;
+        letter-spacing: 4px;
+        color: #797979;
+    }
+    .poem-wrap p:nth-of-type(1) {
+        font-size: 25px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .poem-wrap p {
+        width: 70%;
+        margin: auto;
+        line-height: 30px;
+        color: #797979;
+        font-family: "Linux Biolinum", "Noto Serif SC", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+    }
+    .poem-wrap p:nth-of-type(2) {
+        font-size: 18px;
+        margin: 15px auto;
+    }
+</style>
+<main class="content">
+    <div id="contact" class="container chip-container">
+        <div class="card">
+            <div class="card-content">
+                <!-- 加入网易云音乐热门评论，实时更新 -->
+                <div class="poem-wrap">
+                    <div class="poem-border poem-left">
+                    </div>
+                    <div class="poem-border poem-right">
+                    </div>
+                    <h1>热评</h1>
+                    <p id="poem">loading...</p>
+                    <p id="info">loading...</p>
+                </div>
+                <script>
+                    $.get("https://v1.hitokoto.cn?c=d&c=h&c=j",function(data,status){if(status=='success'){$('#poem').html(data.hitokoto);if(data.from_who!=null){$('#info').html(data.from_who+" · "+"《 "+data.from+" 》");}else{$('#info').html(" “ "+data.from+" ” ");}}else{$('#poem').html("获取出错啦");}});
+                </script>
+                <!-- 加入网易云音乐热门评论，实时更新 -->
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+    $.get("https://v1.hitokoto.cn?c=d&c=h&c=j",function(data,status){if(status=='success'){$('#poem').html(data.hitokoto);if(data.from_who!=null){$('#info').html(data.from_who+" · "+"《 "+data.from+" 》");}else{$('#info').html(" “ "+data.from+" ” ");}}else{$('#poem').html("获取出错啦");}});
+</script>
+</div>
